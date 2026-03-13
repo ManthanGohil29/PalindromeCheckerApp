@@ -1,62 +1,50 @@
-import java.util.Scanner;
+/**
+ * =====================================================
+ * MAIN CLASS - UseCase2PalindromeCheckerApp
+ * =====================================================
+ *
+ * Use Case 2: Hardcoded Palindrome Validation
+ *
+ * Description:
+ * This class demonstrates basic palindrome validation
+ * using a hardcoded string value.
+ *
+ * The application:
+ * - Stores a predefined string
+ * - Compares characters from both ends
+ * - Determines whether the string is a palindrome
+ * - Displays the result on the console
+ *
+ * @author Developer
+ * @version 2.0
+ */
 
 public class PalindromeCheckerApp {
 
     /**
-     * Main method - Entry point of the Java application.
+     * Application entry point for UC2.
+     * @param args Command-line arguments
      */
     public static void main(String[] args) {
 
-        System.out.println("====================================");
-        System.out.println("Welcome to Palindrome Checker Management System");
-        System.out.println("Version: 1.0");
-        System.out.println("System initialized successfully");
-        System.out.println("====================================");
+        // Hardcoded string
+        String word = "madam";
 
-        Scanner sc = new Scanner(System.in);
+        boolean isPalindrome = true;
 
-        System.out.print("Input: ");
-        String input = sc.nextLine();
-
-        PalindromeService service = new PalindromeService();
-
-        // Start time
-        long startTime = System.nanoTime();
-
-        boolean result = service.checkPalindrome(input);
-
-        // End time
-        long endTime = System.nanoTime();
-
-        long executionTime = endTime - startTime;
-
-        System.out.println("Is Palindrome? : " + result);
-        System.out.println("Execution Time : " + executionTime + " ns");
-
-        sc.close();
-    }
-}
-
-/**
- * Service class that contains palindrome checking logic
- */
-class PalindromeService {
-
-    public boolean checkPalindrome(String input) {
-
-        int start = 0;
-        int end = input.length() - 1;
-
-        while (start < end) {
-
-            if (input.charAt(start) != input.charAt(end)) {
-                return false;
+        // Compare characters from both ends
+        for (int i = 0; i < word.length() / 2; i++) {
+            if (word.charAt(i) != word.charAt(word.length() - 1 - i)) {
+                isPalindrome = false;
+                break;
             }
-
-            start++;
-            end--;
         }
 
-        return true;
+        // Print result
+        if (isPalindrome) {
+            System.out.println("The word \"" + word + "\" is a palindrome.");
+        } else {
+            System.out.println("The word \"" + word + "\" is not a palindrome.");
+        }
     }
 }
